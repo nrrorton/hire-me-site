@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Why You Should Hire Me</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f5f7fa;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            padding: 50px;
+            max-width: 800px;
+            margin: auto;
+        }
+
+        h1, h2 {
+            color: #333;
+            margin-top: 40px;
+        }
+
+        ul {
+            line-height: 1.8em;
+            padding-left: 20px;
+        }
+
+        #drum-pad {
+            margin: 20px 0;
+        }
+
+        #drum-pad button {
+            font-size: 1rem;
+            padding: 10px 20px;
+            margin: 5px;
+            border-radius: 8px;
+            border: none;
+            background-color: #333;
+            color: white;
+            cursor: pointer;
+            transition: background-color 0.2s ease-in-out;
+        }
+
+        #drum-pad button:hover {
+            background-color: #555;
+        }
+        #race-track {
+            position: relative;
+            width: 100%;
+            height: 150px;
+            background-color: #eaf0f6;
+            border: 2px solid #444;
+            overflow: hidden;
+            margin: 20px 0;
+            user-select: none;
+            }
+
+            #runner, #bike {
+            position: absolute;
+            top: 60px;
+            font-size: 2.5rem;
+            transition: transform 0.1s ease-out;
+            }
+
+            #runner {
+            left: 0;
+            z-index: 2;
+            }
+
+            #bike {
+            top: 90px;
+            left: 0;
+            z-index: 3;
+            }
+
+            #finish-line {
+            position: absolute;
+            right: 20px;
+            top: 20px;
+            font-size: 3rem;
+            user-select: none;
+            }
+            
+            /* Trail style for runner */
+            .runner-trail {
+            position: absolute;
+            top: 60px;
+            font-size: 2rem;
+            opacity: 0.4;
+            pointer-events: none;
+            transition: opacity 0.5s ease-out;
+            }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Hi, I'm Nick 👋</h1>
+        <p>This site is my creative pitch — here's why I'm someone you want on your team.</p>
+
+        <h2>🧠 Skills</h2>
+        <p>Python, customer support, CRM work, creative writing, team empowerment...</p>
+
+        <h2>📂 Projects</h2>
+        <p>(Placeholder for projects — we’ll fill this in soon!)</p>
+
+        <h2>🥁 Hobbies & Passions</h2>
+        <p>I’m all about staying both creative and active. Outside of work, you’ll usually find me doing one of the
+            following:</p>
+        <ul>
+            <li>🎵 Drumming – I’ve been known to tap out beats on anything within reach</li>
+            <li>🚴 Biking – Whether it’s a long solo ride or a quick spin to clear my head, I’m in</li>
+            <li>🏃 Running – Clears my mind and keeps my focus razor sharp</li>
+            <li>📚 Reading – Forever curious and always learning something new</li>
+            <li>✍️ Writing – Helps me think deeply, communicate clearly, and reflect often</li>
+            <li>🧠 Puzzle-solving – From crosswords to code, I love a challenge</li>
+        </ul>
+
+        <h2>🏁 Combined Race Game</h2>
+        <p>Use arrow keys to move the runner (left/right). Use A and D keys to move the bike (left/right). Reach the finish
+            line!</p>
+        
+        <div id="race-track">
+            <div id="runner">🏃‍♂️</div>
+            <div id="bike">🚴</div>
+            <div id="finish-line">🏁</div>
+        </div>
+
+        <h2>🥁 Drum Pad</h2>
+        <p>Click a pad to hear a beat!</p>
+
+        <div id="drum-pad">
+            <button onclick="playSound('kick')">Kick</button>
+            <button onclick="playSound('snare')">Snare</button>
+            <button onclick="playSound('hihat')">Hi-Hat</button>
+        </div>
+
+        <audio id="kick-sound" src="{{ url_for('static', filename='sounds/kick.wav') }}"></audio>
+        <audio id="snare-sound" src="{{ url_for('static', filename='sounds/snare.wav') }}"></audio>
+        <audio id="hihat-sound" src="{{ url_for('static', filename='sounds/hihat.wav') }}"></audio>
+
+        <script>
+            function playSound(type) {
+                const sound = document.getElementById(`${type}-sound`);
+                sound.currentTime = 0;
+                sound.play();
+            }
+        </script>
+
+
+
+        <h2>🎯 Mission</h2>
+        <p>I solve problems, keep growing, and show up with heart. Let’s talk.</p>
+
+        <h2>🚀 Call to Action</h2>
+        <p>Hiring me isn’t just a decision — it’s an upgrade.</p>
+    </div>
+        <script>
+            const raceTrack = document.getElementById('race-track');
+            const runner = document.getElementById('runner');
+            const bike = document.getElementById('bike');
+            const finishLine = document.getElementById('finish-line');
+
+            const trackWidth = raceTrack.clientWidth;
+            const finishLineWidth = finishLine.clientWidth;
+            const maxPosition = trackWidth - finishLineWidth - 40;
+
+            let runnerX = 0;
+            let bikeX = 0;
+            const runnerSpeed = 10;
+            const bikeSpeed = runnerSpeed * 2;
+
+            const trails = [];
+
+            function createTrail(x) {
+                const trail = document.createElement('div');
+                trail.textContent = '🏃‍♂️';
+                trail.classList.add('runner-trail');
+                trail.style.left = x + 'px';
+                raceTrack.appendChild(trail);
+
+                setTimeout(() => {
+                    trail.style.opacity = '0';
+                    setTimeout(() => raceTrack.removeChild(trail), 500);
+                }, 500);
+
+                trails.push(trail);
+            }
+
+            document.addEventListener('keydown', (event) => {
+                switch (event.key) {
+                    case 'ArrowRight':
+                        runnerX = Math.min(runnerX + runnerSpeed, maxPosition);
+                        runner.style.transform = `translateX(${runnerX}px)`;
+                        createTrail(runnerX);
+                        break;
+                    case 'ArrowLeft':
+                        runnerX = Math.max(runnerX - runnerSpeed, 0);
+                        runner.style.transform = `translateX(${runnerX}px)`;
+                        createTrail(runnerX);
+                        break;
+                    case 'd':
+                    case 'D':
+                        bikeX = Math.min(bikeX + bikeSpeed, maxPosition);
+                        bike.style.transform = `translateX(${bikeX}px)`;
+                        break;
+                    case 'a':
+                    case 'A':
+                        bikeX = Math.max(bikeX - bikeSpeed, 0);
+                        bike.style.transform = `translateX(${bikeX}px)`;
+                        break;
+                }
+            });
+        </script>
+</body>
+
+</html>
