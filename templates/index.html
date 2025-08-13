@@ -92,6 +92,44 @@
             pointer-events: none;
             transition: opacity 0.5s ease-out;
             }
+
+            /* Projects Section */
+            .projects {
+                display: flex;
+                flex-direction: column;
+                gap: 20px;
+            }
+
+            .project {
+                background-color: #fff;
+                padding: 15px;
+                border-radius: 8px;
+                box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            }
+
+            .project h3 {
+                margin-top: 0;
+                color: #222;
+            }
+
+            .project p {
+                margin-bottom: 10px;
+                color: #555;
+            }
+
+            .project a {
+                display: inline-block;
+                padding: 8px 12px;
+                background-color: #333;
+                color: #fff;
+                border-radius: 5px;
+                text-decoration: none;
+                transition: background-color 0.2s ease-in-out;
+            }
+
+            .project a:hover {
+                background-color: #555;
+            }
     </style>
 </head>
 
@@ -101,34 +139,30 @@
         <p>I've created this site to showcase a bit about me — here's why I'm someone you want on your team.</p>
 
         <h2>🧠 Skills</h2>
-        <p>Python, customer support, CRM work, creative writing, team empowerment...</p>
+        <p>Python, Java, customer support, CRM work, creative writing, team empowerment...</p>
 
         <h2>📂 Projects</h2>
-        <div style="display: flex; flex-direction: column; gap: 20px;">
+        <div class="projects">
         
-            <div style="background-color: #fff; padding: 15px; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.1);">
+            <div class="project">
                 <h3>Advent of Code Challenges</h3>
                 <p>Python solutions to various Advent of Code puzzles, showcasing problem-solving and logical thinking.</p>
-                <a href="projects/advent-of-code/"
-                    style="display:inline-block; padding:8px 12px; background-color:#333; color:#fff; border-radius:5px; text-decoration:none;">View
-                    Code</a>
+                <a href="https://github.com/nrrorton/hire-me-site/tree/master/projects/advent-of-code" target="_blank">View Code on GitHub</a>
             </div>
         
-            <div style="background-color: #fff; padding: 15px; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.1);">
+            <div class="project">
                 <h3>Custom-Built Site</h3>
-                <p>A responsive concierge service website designed and built entirely from scratch using Wix based on business owner needs.</p>
-                <a href="https://www.mygrandlakeconcierge.com/" target="_blank"
-                    style="display:inline-block; padding:8px 12px; background-color:#333; color:#fff; border-radius:5px; text-decoration:none;">Visit
-                    Site</a>
+                <p>A responsive concierge service website designed and built entirely from scratch using Wix.</p>
+                <a href="https://www.mygrandlakeconcierge.com/" target="_blank">Visit Site</a>
             </div>
         
-            <div style="background-color: #fff; padding: 15px; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.1);">
+            <div class="project">
                 <h3>Client Website Updates</h3>
                 <p>Improved layout, content, and SEO for a professional client website during a micro-internship.</p>
-                <a href="https://www.shannonwhitehat.com/" target="_blank"
-                    style="display:inline-block; padding:8px 12px; background-color:#333; color:#fff; border-radius:5px; text-decoration:none;">Visit
-                    Site</a>
+                <a href="https://www.shannonwhitehat.com/" target="_blank">Visit Site</a>
             </div>
+        
+        </div>
         
         </div>
 
