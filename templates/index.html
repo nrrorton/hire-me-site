@@ -64,9 +64,27 @@
 
         /* Hobbies two-column layout */
         ul {
-            columns: 2;
-            padding-left: 20px;
-            line-height: 1.8em;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            list-style: none; /* removes default bullets */
+            padding: 0;
+            margin: 0;
+        }
+
+        ul li {
+            flex: 1 1 45%; /* two items per row */
+            margin-bottom: 10px;
+            position: relative;
+            padding-left: 1.6em; /* space for custom bullet */
+        }
+
+        ul li::before {
+            content: "•"; /* custom bullet */
+            position: absolute;
+            left: 0;
+            color: #1f3c88; /* matches theme */
+            font-weight: bold;
         }
 
         button,
